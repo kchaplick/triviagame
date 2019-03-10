@@ -1,20 +1,67 @@
 body{
-    background-color:#2d3527;
+    background-image: url(../images/galaxybackground.jpg)
 }
 
 .container{
     display:grid;
-    grid-template-columns: [column-start] 20% [line2] auto [line3] 20% [column-end];
-  grid-template-rows: [row-start] 20% [line2] auto [line3] 20% [row-end];
+    grid-template-columns: [column-start] 8.3% [line2] 8.3% [line3] 8.3% [line4] 8.3% [line5] 8.3% [line6]8.3% [line7] 8.3% [line8] 8.3% [line9] 8.3% [line10] 8.3% [line11] 8.3% [line12] 8.3%[column-end];
+  grid-template-rows: [row-start] 20% [line2] 20% [line3] auto [line4] 20% [line5] 20% [row-end];
   justify-items:center;
+  align-items: center;
+ 
+  
+}
+
+header{
+    grid-column-start: 4;
+    grid-column-end:10;
+    grid-row-start:1;
+    grid-row-end:3;
+}
+
+.logo{
+    width: auto;
+    height: 7rem;
+    margin: 20px 0px 30px 0px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start:1;
+    grid-row-end:3;
+    justify-items:center;
   align-items: center;
 }
 
 .startDiv{
-    grid-column-start: 2;
-    grid-column-end:3;
-    grid-row-start:2;
-    grid-row-end:3;
-    border: solid 2px #ffffff;
+    grid-column-start: 4;
+    grid-column-end:10;
+    grid-row-start:3;
+    grid-row-end:4;
+    background-color:#fcfefc;
+    border: solid 2px #fdaf75;
+    margin-top: 100px;
 
+}
+
+.welcome{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+p{
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+.directions{
+    margin: 20px 60px;
+    text-align: center;
+}
+
+.gameStart{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.questionsContainer{
+    
 }

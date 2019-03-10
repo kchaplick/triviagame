@@ -5,10 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>trivia</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--normalize-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
 
     <!--stylesheet-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Condensed" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!--favicon-->
@@ -17,14 +19,17 @@
 <body>
     <!--Site Container-->
     <div class="container">
+        <header><img class="logo" src="assets/images/fireflylogo.png"> </header>
         <div class = "startDiv">
-            <header>Firefly Trivia</header>
-            <h2>Directions</h2>
-            <p>Test your nerd knowledge of the short-lived, but beloved, series Firefly.<br>
+            <h1 class="welcome">Welcome to The Verse</h1>
+            <p class="directions">So you want to be a crew member aboard the Serenity?<br> Captain Malcom Reynolds is not very trusting of strangers.<br> Pass our test and see if you have what it takes to board.<br><br>
             You will have 10 seconds to answer each question</p>
-            <button>Press Enter to Play</button>
-
+            <h2 class="gameStart">Press Enter to Play</h2>
         </div>
     <!--End site container-->    
-    </div>    
+    </div>   
+    <script src="app.js"></script> 
+
+
+
 </body>
