@@ -63,5 +63,11 @@ p{
 }
 
 .questionsContainer{
-    
+    grid-column-start: 4;
+    grid-column-end:10;
+    grid-row-start:3;
+    grid-row-end:4;
+    background-color:#fcfefc;
+    border: solid 2px #fdaf75;
+    margin-top: 100px;
 }
