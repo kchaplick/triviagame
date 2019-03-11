@@ -1,10 +1,15 @@
 $( document ).ready(function() {
     console.log("ready");
     $(".questionContainer").hide();
+    $(".incorrectScreen").hide();
+    $(".correctScreen").hide();
+    $(".timesupScreen").hide();
+    $(".scoreScreen").hide();
 
 //Game object
 var correctCount = 0;
 var incorrectCount = 0;
+var questionIndex = 0;
 var game = [
     {
         question: "The rebels (such as Zoe and Mal) are known as",
@@ -108,10 +113,36 @@ function shuffle(array) {
     return array;
   }
 
+ 
+
 //function to start the game
     function gameStart(){
+
+        if (questionIndex == game.length){
+            $(".correct").html(`Correct: ${correctCount}`)
+            $(".incorrect").html(`Incorrect: ${incorrectCount}`)
+            $(".scoreScreen").show();
+            
+            $(document).keypress(function(e) {
+                var keycode = (e.keyCode ? e.keyCode : e.which);
+                if (keycode == '13') {
+                    console.log('You pressed enter! - keypress');
+                    correctCount = 0;
+                    incorrectCount = 0;
+                    questionIndex = 0;
+                    $(".scoreScreen").hide();
+                    gameStart();
+                }
+            });
+            return;
+        }
+
+
+
+        count = 10;
         $(".questionContainer").show();
-        var questionIndex = 0;
+        $(".answers").empty();
+    
 //pick a  question from the object array
         var currentQuestion = game[questionIndex].question;
         console.log(currentQuestion);
@@ -123,37 +154,71 @@ function shuffle(array) {
         var shuffledAnswered = shuffle(answersArray);
  //answers into html
         for (i=0; i<answersArray.length; i++){
-            var answerDiv = $(`<div> ${answersArray[i]}</div>`);
+            var answerDiv = $(`<div class = "choices">${answersArray[i]}</div>`);
             $(answerDiv).appendTo(".answers");      
         }
 
-
-
-
-
-
-    //if all questions have been used display final screen
-
-//pick the corresponding correct answer
-
-//pick two false answers
-
 //start timer
+//function for timer
+
+
+var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+function timer()
+{
+  count--
+  if (count <= 0)
+  {
+     clearInterval(counter);
+     $(".timesupScreen").show();
+     questionIndex++
+     incorrectCount++
+     setTimeout(function(){
+         gameStart();
+         $(".timesupScreen").hide();
+     },1000);
+  }
+
+  $(".timer").html(count);
+  
+}
+
 
 //onkeyup event to all answers
+$(".choices").click(function() {
+    var getInner = $(this).html()
+    console.log(getInner);
+    clearInterval(counter);
+    if (getInner == game[questionIndex].correct){
+        $(".correctScreen").show();
+        correctCount++
+        questionIndex++
 
-//if statement 
-    //timer runs out
-
-    //if answer is correct add to correct and show correct slide with timer interval and get new question
-
-    //else add to incorrect slide with timer interval and generate new question
+        setTimeout(function(){
+            gameStart();
+            $(".correctScreen").hide();
+        },1000);
+    }
+    else {
+        clearInterval(counter);
+        $(".incorrectScreen").show();
+        incorrectCount++
+        questionIndex++
+        setTimeout(function(){
+            gameStart();
+            $(".incorrectScreen").hide();
+        },1000);
+     
+    }
+  });
 
 //
+
 
     };
 
 
+ 
 
 
 
