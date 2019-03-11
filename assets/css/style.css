@@ -29,6 +29,7 @@ header{
     grid-row-end:3;
     justify-items:center;
   align-items: center;
+  margin-top:30px;
 }
 
 .startDiv{
@@ -62,7 +63,7 @@ p{
     text-align: center;
 }
 
-.questionsContainer{
+.questionContainer{
     grid-column-start: 4;
     grid-column-end:10;
     grid-row-start:3;

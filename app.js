@@ -1,7 +1,10 @@
 $( document ).ready(function() {
     console.log("ready");
+    $(".questionContainer").hide();
 
 //Game object
+var correctCount = 0;
+var incorrectCount = 0;
 var game = [
     {
         question: "The rebels (such as Zoe and Mal) are known as",
@@ -85,11 +88,50 @@ $(document).keypress(function(e) {
     }
 });
 
+//function to randomize ansers array
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
 //function to start the game
     function gameStart(){
+        $(".questionContainer").show();
+        var questionIndex = 0;
+//pick a  question from the object array
+        var currentQuestion = game[questionIndex].question;
+        console.log(currentQuestion);
+        $(".question").html(currentQuestion);
+ //make temp array for answers       
+    var answersArray = [game[questionIndex].correct, game[questionIndex].falseAnswer1,game[questionIndex].falseAnswer2];
 
-//pick a random question from the object array
-    //add used questions to used array
+ //function to shuffle   
+        var shuffledAnswered = shuffle(answersArray);
+ //answers into html
+        for (i=0; i<answersArray.length; i++){
+            var answerDiv = $(`<div> ${answersArray[i]}</div>`);
+            $(answerDiv).appendTo(".answers");      
+        }
+
+
+
+
+
+
     //if all questions have been used display final screen
 
 //pick the corresponding correct answer
