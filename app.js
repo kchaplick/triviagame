@@ -207,13 +207,14 @@ $(".choices").click(function() {
     }
     else {
         $(".questionContainer").hide();
+        $(".correctAnswer").html(game[questionIndex].correct);
         $(".incorrectScreen").show();
         incorrectCount++
         questionIndex++
         setTimeout(function(){
             $(".incorrectScreen").hide();
             gameStart();
-        },2000);
+        },3000);
      
     }
   });
