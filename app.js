@@ -1,15 +1,17 @@
 $( document ).ready(function() {
-    console.log("ready");
+    //hide element to be shown later
     $(".questionContainer").hide();
     $(".incorrectScreen").hide();
     $(".correctScreen").hide();
     $(".timesupScreen").hide();
     $(".scoreScreen").hide();
 
-//Game object
+//Game object and variables
 var correctCount = 0;
 var incorrectCount = 0;
+//holds the index of which object in the array is being shown
 var questionIndex = 0;
+//questions and answers
 var game = [
     {
         question: "The rebels (such as Zoe and Mal) are known as",
@@ -81,13 +83,12 @@ var game = [
         falseAnswer2: "Cisterna Magna"
 
     },
+];
 
-] 
 //Press enter to play function
 $(document).keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
-        console.log('You pressed enter! - keypress');
         $(".startDiv").hide();
         gameStart();
     }
@@ -97,10 +98,10 @@ $(document).keypress(function(e) {
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
-    // While there remain elements to shuffle...
+    // While there remain elements to shuffle
     while (0 !== currentIndex) {
   
-      // Pick a remaining element...
+      // Pick a remaining element
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
   
@@ -117,16 +118,22 @@ function shuffle(array) {
 
 //function to start the game
     function gameStart(){
-
+        //if all questions have been asked show score screen and give option to play again
         if (questionIndex == game.length){
+            $(".questionContainer").hide();
             $(".correct").html(`Correct: ${correctCount}`)
             $(".incorrect").html(`Incorrect: ${incorrectCount}`)
+            if (correctCount < incorrectCount){
+                $(".inOrOut").html("I'm thinkin' you weren't burdened" + "<br>" + "with an overabundance of schooling")
+            }
+            else{
+                $(".inOrOut").html("You're welcome on my boat.")
+            }
             $(".scoreScreen").show();
             
             $(document).keypress(function(e) {
                 var keycode = (e.keyCode ? e.keyCode : e.which);
                 if (keycode == '13') {
-                    console.log('You pressed enter! - keypress');
                     correctCount = 0;
                     incorrectCount = 0;
                     questionIndex = 0;
@@ -137,31 +144,29 @@ function shuffle(array) {
             return;
         }
 
-
-
-        count = 10;
+        //show the questions container and clear any current answers
         $(".questionContainer").show();
         $(".answers").empty();
     
 //pick a  question from the object array
         var currentQuestion = game[questionIndex].question;
-        console.log(currentQuestion);
         $(".question").html(currentQuestion);
  //make temp array for answers       
     var answersArray = [game[questionIndex].correct, game[questionIndex].falseAnswer1,game[questionIndex].falseAnswer2];
 
  //function to shuffle   
-        var shuffledAnswered = shuffle(answersArray);
+        shuffle(answersArray);
  //answers into html
         for (i=0; i<answersArray.length; i++){
-            var answerDiv = $(`<div class = "choices">${answersArray[i]}</div>`);
+            var answerDiv = $(`<button class = "choices">${answersArray[i]}</button>`);
             $(answerDiv).appendTo(".answers");      
         }
 
 //start timer
 //function for timer
 
-
+count = 11;
+timer();
 var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
 
 function timer()
@@ -169,6 +174,7 @@ function timer()
   count--
   if (count <= 0)
   {
+    $(".questionContainer").hide();
      clearInterval(counter);
      $(".timesupScreen").show();
      questionIndex++
@@ -176,7 +182,7 @@ function timer()
      setTimeout(function(){
          gameStart();
          $(".timesupScreen").hide();
-     },1000);
+     },2000);
   }
 
   $(".timer").html(count);
@@ -187,27 +193,27 @@ function timer()
 //onkeyup event to all answers
 $(".choices").click(function() {
     var getInner = $(this).html()
-    console.log(getInner);
     clearInterval(counter);
     if (getInner == game[questionIndex].correct){
+        $(".questionContainer").hide();
         $(".correctScreen").show();
         correctCount++
         questionIndex++
 
         setTimeout(function(){
-            gameStart();
             $(".correctScreen").hide();
-        },1000);
+            gameStart();
+        },2000);
     }
     else {
-        clearInterval(counter);
+        $(".questionContainer").hide();
         $(".incorrectScreen").show();
         incorrectCount++
         questionIndex++
         setTimeout(function(){
-            gameStart();
             $(".incorrectScreen").hide();
-        },1000);
+            gameStart();
+        },2000);
      
     }
   });

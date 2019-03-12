@@ -14,52 +14,55 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!--favicon-->
- 
+
 </head>
+
 <body>
     <!--Site Container-->
     <div class="container">
         <!--starting screen-->
         <header><img class="logo" src="assets/images/fireflylogo.png"> </header>
-        <div class = "startDiv">
+        <div class="startDiv">
             <h1 class="welcome">Welcome to The Verse</h1>
-            <p class="directions">So you want to be a crew member aboard the Serenity?<br> Captain Malcom Reynolds is not very trusting of strangers.<br> Pass our test and see if you have what it takes to board.<br><br>
-            You will have 10 seconds to answer each question</p>
+            <p class="directions">So you want to be a crew member aboard the Serenity?<br> Captain Malcom Reynolds is
+                not very trusting of strangers.<br> Pass our test and see if you have what it takes to board.<br><br>
+                You will have 10 seconds to answer each question</p>
             <h2 class="gameStart">Press Enter to Play</h2>
+            <img class="bottomFrame" src="assets/images/bottomframe.jpg">
         </div>
 
         <!--trivia questions container-->
         <div class="questionContainer">
-            <div class="question"></div>
             <div class="timer"></div>
+            <h2 class="question"></h2>
             <div class="answers"></div>
-            
+            <img class="bottomFrame" src="assets/images/questionsbottom.jpg">
+
         </div>
 
-        <div class = "scoreScreen">
-            <div class = "correct"> Correct:</div>
-            <div class = "incorrect"> Incorrect:</div>
+        <div class="scoreScreen">
+            <h1 class = "inOrOut"></h1>
+            <div class="correct"> Correct:</div>
+            <div class="incorrect"> Incorrect:</div>
             <h2 class="gameStart">Press Enter to Play</h2>
+            <img class="bottomFrame" src="assets/images/bottomframe.jpg">
         </div>
 
-        <div class = "timesupScreen">
-                <h1>Time's Up</h1>
-                <p>My days of not taking you seriously are certainly coming to a middle</p>
-            </div>
-
-        <div class = "incorrectScreen">
-            <h1>Incorrect</h1>
-            <p>Curse your sudden but inevitable betrayal</p>
+        <div class="timesupScreen">
+            <img class="bottomFrame" src="assets/images/timesup.jpg">
         </div>
 
-        <div class = "correctScreen">
-                <h1>Correct</h1>
-                <p>Yes sir, Captain Tightpants</p>
+        <div class="incorrectScreen">
+            <img class="bottomFrame" src="assets/images/incorrect.jpg">
         </div>
 
-    <!--End site container-->    
-    </div>   
-    <script src="app.js"></script> 
+        <div class="correctScreen">
+            <img class="bottomFrame" src="assets/images/correct.jpg">
+        </div>
+
+        <!--End site container-->
+    </div>
+    <script src="app.js"></script>
 
 
 
